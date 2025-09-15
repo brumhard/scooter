@@ -15,12 +15,12 @@ class Scheme(str, enum.Enum):
 
 
 class Pattern(str, enum.Enum):
-    MYPY_PATTERN = "mypy"
+    KNOWN_FILE_PATTERN = "file"
     PY_PATTERN = "py"
 
     def regex(self):
-        if self == Pattern.MYPY_PATTERN:
-            regex = r"(?P<path>([\w\.]+\/)+\w+\.\w+)(:(?P<line>\d+))?"
+        if self == Pattern.KNOWN_FILE_PATTERN:
+            regex = r"(?P<path>[\/?\w-]+\.(java|py))(:(?P<line>\d+))?"
         elif self == Pattern.PY_PATTERN:
             regex = r'File "(?P<path>.+?)", line (?P<line>\d+)'
 
@@ -50,7 +50,7 @@ def cli(
     pattern: Annotated[
         Pattern,
         typer.Option("--pattern", "-p", help="Pattern for tool."),
-    ] = Pattern.MYPY_PATTERN,
+    ] = Pattern.KNOWN_FILE_PATTERN,
 ):
     """Linkify relative file paths from stdin using OSC-8."""
     rx = pattern.regex()

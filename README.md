@@ -6,4 +6,4 @@ Unfortunately, not all tools have support for the format.
 
 `Scooter` uses regex to find links and replaces them with the **HYPER**link version.
 
-> Currently, only `python` and `mypy` formats are supported.
+> Currently, only `python` and simple file formats are supported.
