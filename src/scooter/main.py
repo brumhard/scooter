@@ -20,7 +20,7 @@ class Pattern(str, enum.Enum):
 
     def regex(self):
         if self == Pattern.KNOWN_FILE_PATTERN:
-            regex = r"(?P<path>[\/?\w-]+\.(java|py))(:(?P<line>\d+))?"
+            regex = r"(?P<path>[\/?\w-]+\.(java|py|proto))(:(?P<line>\d+))?"
         elif self == Pattern.PY_PATTERN:
             regex = r'File "(?P<path>.+?)", line (?P<line>\d+)'
 
